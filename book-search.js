@@ -1,14 +1,26 @@
 
 const bookContainer = document.getElementById("book-found"); // the main parent where the div(containing information about a book) will be appended
+document.getElementById('items-found').style.display = "none";
 const clearData = () => {
     document.getElementById("book-search").value = '';
     bookContainer.textContent = "";
 };
 
+const itemsFound = (itemsTotal) => {
+    let number = document.getElementById('items-found');
+    number.style.display = 'block';
+    number.innerHTML = `
+    <h1 class="text-center">We found ${itemsTotal} item(s) . <h1>
+    `;
+};
 
 
 //this function is load the data from api according to the search input value
 const loadData = () => {
+    //clearing total found number after search
+    let number = document.getElementById('items-found');
+    number.textContent = "";
+    number.style.display = "none";
     // storing the value of search value 
     const bookName = document.getElementById("book-search").value;
     //if the user does not give any value we will send this code
@@ -24,7 +36,6 @@ const loadData = () => {
 
     //dyapic api link from where the search result will be shown
     const url = `HTTPS://openlibrary.org/search.json?q=${bookName}`;
-    console.log(url);
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -39,10 +50,11 @@ const showData = data => {
     //console.log(typeof totalSearchResult);
     if (totalSearchResult == 0) {
         console.log("nothing found");
+        itemsFound(totalSearchResult);
         clearData();
         return;
     }
-    console.log("Found ", totalSearchResult, " books");
+    itemsFound(totalSearchResult);
     //console.log(data.docs[0].author_name[0]);
 
     // const temp = data.imtiaz;
