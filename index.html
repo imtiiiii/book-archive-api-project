@@ -9,7 +9,7 @@
     <style>
         #book-found {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             grid-gap: 30px;
 
         }
@@ -22,13 +22,19 @@
 
 <body>
     <main class="container-fluid bg-light ">
-        <!-- this div (down) is for search area  -->
+        <!-- this div (down) is for search area , search button -->
         <div class="my-5 py-5">
             <div class="input-group mb-3 w-75 mx-auto">
                 <input type="text" class="form-control" placeholder="Book name" aria-label="Recipient's username"
                     aria-describedby="button-addon2" id="book-search">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2"
                     onclick="loadData()">Search</button>
+            </div>
+        </div>
+        <!-- this div(down) is for spinner  -->
+        <div id="spinner" style="min-height: 20vh;" class="border border-5 w-25 h-25 mx-auto d-none">
+            <div class="spinner-border text-success mx-auto" role="status">
+                <span class="visually-hidden">Loading...</span>
             </div>
         </div>
         <!-- this div (down) is to show the total number of items found after search -->

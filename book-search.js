@@ -104,10 +104,10 @@ const showData = data => {
             <img class="img-fluid " src="${imgSrc}" style="width:250px; height:250px" alt="book image not found">
         </div>
         <div class=" mt-3">
-            <h1 class="">Book Name: ${nameOfBook}</h1>
-            <h2 class="">Author Name: ${authorName}</h2>
-            <h3 class="fw-bold ">Publisher: ${firstPublisher}</h3>
-            <h4 class="fw-bold ">First publish year: ${publishYear}</h4>
+            <h2 class="">Book Name: ${nameOfBook}</h1>
+            <h3 class="">Author Name: ${authorName}</h2>
+            <h4 class="fw-bold ">Publisher: ${firstPublisher}</h3>
+            <h5 class="fw-bold ">First publish year: ${publishYear}</h4>
         </div>
         `;
         //APPENDING SINGLE BOOK DETAIL DIV  TO THE PARENT DIV
