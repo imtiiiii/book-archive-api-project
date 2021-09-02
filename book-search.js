@@ -21,6 +21,8 @@ const itemsFound = (itemsTotal) => {
 
 //this function is load the data from api according to the search input value
 const loadData = () => {
+    //toggle display
+
     //clearing total found number after search
     let number = document.getElementById('items-found');
     number.textContent = "";
@@ -35,7 +37,8 @@ const loadData = () => {
         clearData();
         return;
     }
-
+    toggleDisplay('display-search', 'none');
+    toggleDisplay('spinner', 'block');
     //clearing the search input field
     clearData();
 
@@ -55,6 +58,8 @@ const showData = data => {
     if (totalSearchResult == 0) {
         itemsFound(totalSearchResult);
         clearData();
+        toggleDisplay('display-search', 'block');
+        toggleDisplay('spinner', 'none');
         return;
     }
     //if the code comes here that means api found some matching result with search input
@@ -94,26 +99,30 @@ const showData = data => {
         div.classList.add("rounded-3");
         div.classList.add("bg-white");
         div.classList.add("shadow-lg");
-        div.classList.add("ms-5");
-        div.classList.add("my-5");
-        div.classList.add("ps-5");
-        div.classList.add("py-5");
+
         // showing all the information (down) using innerHTM\L
         div.innerHTML = `
-        <div class="w-100  mx-auto " style="height:25vh;">
-            <img class="img-fluid " src="${imgSrc}" style="width:250px; height:250px" alt="book image not found">
+        <div class="w-100   mx-auto " ">
+            <img class="img-fluid py-3 ps-3 " src="${imgSrc}" style="width:250px; height:250px" alt="book image not found">
         </div>
-        <div class=" mt-3">
-            <h2 class="">Book Name: ${nameOfBook}</h1>
+        <div class=" py-3 ps-3">
+            <h3 class="">Book Name: ${nameOfBook}</h1>
             <h3 class="">Author Name: ${authorName}</h2>
-            <h4 class="fw-bold ">Publisher: ${firstPublisher}</h3>
+            <h5 class="fw-bold ">Publisher: ${firstPublisher}</h3>
             <h5 class="fw-bold ">First publish year: ${publishYear}</h4>
         </div>
         `;
         //APPENDING SINGLE BOOK DETAIL DIV  TO THE PARENT DIV
         bookContainer.append(div);
+        toggleDisplay('display-search', 'block');
+        toggleDisplay('spinner', 'none');
 
 
     });
 
+};
+
+const toggleDisplay = (id, value) => {
+    console.log("i'm called");
+    document.getElementById(id).style.display = value;
 };

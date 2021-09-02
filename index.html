@@ -11,7 +11,11 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 30px;
+        }
 
+        #spinner {
+            display: none;
+            border: none;
         }
     </style>
 
@@ -32,18 +36,21 @@
             </div>
         </div>
         <!-- this div(down) is for spinner  -->
-        <div id="spinner" style="min-height: 20vh;" class="border border-5 w-25 h-25 mx-auto d-none">
+        <div id="spinner" style="min-height: 20vh;" class=" w-25 h-25 mx-auto ">
             <div class="spinner-border text-success mx-auto" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
-        <!-- this div (down) is to show the total number of items found after search -->
-        <div id="items-found" class=" my-5 py-5 rounded rounded-3 bg-white container">
+        <!-- toggle display  -->
+        <div id="display-search">
+            <!-- this div (down) is to show the total number of items found after search -->
+            <div id="items-found" class=" my-5 py-5 rounded rounded-3 bg-white container border border-dark">
 
-        </div>
-        <!-- this div(down) is to show search result items -->
-        <div id="book-found">
+            </div>
+            <!-- this div(down) is to show search result items -->
+            <div id="book-found">
 
+            </div>
         </div>
 
     </main>
