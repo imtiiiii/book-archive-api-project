@@ -25,12 +25,13 @@ const loadData = () => {
     let number = document.getElementById('items-found');
     number.textContent = "";
     number.style.display = "none";
-    // storing the value of search value 
+    // clearing done
+    // storing the input of search value 
     const bookName = document.getElementById("book-search").value;
     //if the user does not give any value we will send this code
     if (bookName === "") {
-        console.log("BOOK NAME :", bookName);
-        console.log("Give proper name");
+
+        alert("Give proper name");
         clearData();
         return;
     }
@@ -49,28 +50,20 @@ const loadData = () => {
 };
 const showData = data => {
     //console.log(data.numFound);
-    //storing total search result found
+    //storing total search(count) result found
     const totalSearchResult = data.numFound;
-    //console.log(typeof totalSearchResult);
     if (totalSearchResult == 0) {
-        console.log("nothing found");
         itemsFound(totalSearchResult);
         clearData();
         return;
     }
+    //if the code comes here that means api found some matching result with search input
     itemsFound(totalSearchResult);
-    //console.log(data.docs[0].author_name[0]);
-
-    // const temp = data.imtiaz;
-    // if (temp === undefined) console.log("yeeee");
-    let i = 0;
-
     data.docs.forEach(element => {
-
-        const div = document.createElement('div');
+        //here (down) we are storing all the book details we need to show after the item is matched with user's search input value
+        //book image,book name,author name,publisher name,first publish year ->>(stored details)
         let imageId = element.cover_i;
         let imgSrc = '';
-        //console.log(imageId);
         if (imageId === undefined) {
             imgSrc = 'img/default-book.png';
         }
@@ -93,11 +86,11 @@ const showData = data => {
         }
         let publishYear = element.first_publish_year;
         if (publishYear === undefined || publishYear === '0') publishYear = "Unknown";
-
-        console.log("i= ", i, "name: ", nameOfBook, "author name: ", authorName);
-        i++;
-
-
+        //storing complete (up), if we don't any data we will show 'unknown' to the user
+        //created a div(down) , in this div we will show a single book details
+        //it will create same number of divs as the array[data.docs]length
+        const div = document.createElement('div');
+        //added some class(down) to that div
         div.classList.add("rounded-3");
         div.classList.add("bg-white");
         div.classList.add("shadow-lg");
@@ -105,8 +98,7 @@ const showData = data => {
         div.classList.add("my-5");
         div.classList.add("ps-5");
         div.classList.add("py-5");
-
-
+        // showing all the information (down) using innerHTM\L
         div.innerHTML = `
         <div class="w-100  mx-auto " style="height:25vh;">
             <img class="img-fluid " src="${imgSrc}" style="width:250px; height:250px" alt="book image not found">
@@ -118,6 +110,7 @@ const showData = data => {
             <h4 class="fw-bold ">First publish year: ${publishYear}</h4>
         </div>
         `;
+        //APPENDING SINGLE BOOK DETAIL DIV  TO THE PARENT DIV
         bookContainer.append(div);
 
 
