@@ -14,7 +14,7 @@ const itemsFound = (itemsTotal) => {
     //when user search for something we enable it
     number.style.display = 'block';
     number.innerHTML = `
-    <h1 class="text-center">We found ${itemsTotal} item(s) . <h1>
+    <h1 class="text-center">We found ${itemsTotal} item(s) . </h1>
     `;
 };
 
