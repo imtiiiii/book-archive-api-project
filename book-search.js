@@ -1,28 +1,45 @@
+
+const bookContainer = document.getElementById("book-found"); // the main parent where the div(containing information about a book) will be appended
+const clearData = () => {
+    document.getElementById("book-search").value = '';
+    bookContainer.textContent = "";
+};
+
+
+
 //this function is load the data from api according to the search input value
 const loadData = () => {
     // storing the value of search value 
     const bookName = document.getElementById("book-search").value;
+    //if the user does not give any value we will send this code
+    if (bookName === "") {
+        console.log("BOOK NAME :", bookName);
+        console.log("Give proper name");
+        clearData();
+        return;
+    }
+
     //clearing the search input field
-    document.getElementById("book-search").value = '';
+    clearData();
+
     //dyapic api link from where the search result will be shown
     const url = `HTTPS://openlibrary.org/search.json?q=${bookName}`;
-    // console.log(url);
-
+    console.log(url);
     fetch(url)
         .then(res => res.json())
-        .then(data => showData(data));
+        .then(data => {
+            showData(data);
+        });
 
 };
 const showData = data => {
-    console.log(data.docs);
-    const bookContainer = document.getElementById("book-found"); // the main parent where the div(containing information about a book) will be appended
     //console.log(data.numFound);
     //storing total search result found
     const totalSearchResult = data.numFound;
     //console.log(typeof totalSearchResult);
     if (totalSearchResult == 0) {
         console.log("nothing found");
-        bookContainer.textContent = "";
+        clearData();
         return;
     }
     console.log("Found ", totalSearchResult, " books");
@@ -31,7 +48,7 @@ const showData = data => {
     // const temp = data.imtiaz;
     // if (temp === undefined) console.log("yeeee");
     let i = 0;
-    bookContainer.textContent = "";
+
     data.docs.forEach(element => {
 
         const div = document.createElement('div');
