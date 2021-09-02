@@ -1,5 +1,6 @@
 
 const bookContainer = document.getElementById("book-found"); // the main parent where the div(containing information about a book) will be appended
+//Hiding the div -> where we will show total search items we found
 document.getElementById('items-found').style.display = "none";
 const clearData = () => {
     document.getElementById("book-search").value = '';
@@ -7,7 +8,10 @@ const clearData = () => {
 };
 
 const itemsFound = (itemsTotal) => {
+    //getting the div where we will show the count of total numbers found after search
     let number = document.getElementById('items-found');
+    //its display is hidden by default
+    //when user search for something we enable it
     number.style.display = 'block';
     number.innerHTML = `
     <h1 class="text-center">We found ${itemsTotal} item(s) . <h1>
